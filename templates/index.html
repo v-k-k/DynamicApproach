@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index page</title>
+    <style>
+        .content{
+            height: 0;
+            transition: 1s;
+            display: none;
+        }
+
+        .field{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to custom callback-based Python server for comparison classical approaches in dynamic programming</h1>
+<form action="/awesome_endpoint/" method="post">
+    <div class="approach">
+        <div>
+            <input type="checkbox" name="Choice-Memoization">
+            <label for="Memoization">Memoization</label>
+        </div>
+        <div>
+            <input type="checkbox" name="Choice-Tabulation">
+            <label for="Tabulation">Tabulation</label>
+        </div>
+    </div>
+    <div>
+        Choose one of basic problems:
+    </div>
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="Fib">Calculate Fibonacci number</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the number to calculate Fibonacci" class="field" name="fib-arg1">
+        </div>
+    </div>
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="GridTraveller">Finding the number of ways to reach from a starting position to an ending
+            position
+            travelling</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the number of horizontal rows" class="field" name="grid_traveller-arg1">
+            <input type="text" placeholder="Pass the number of vertical rows" class="field" name="grid_traveller-arg2">
+        </div>
+    </div>
+
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="CanSum">Subset sum problem</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the target sum number for calculation" class="field" name="can_sum-arg1">
+            <input type="text" placeholder="Pass the comma separated sequence of numbers" class="field" name="can_sum-arg2">
+        </div>
+    </div>
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="HowSum">Find target sum ways</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the target sum number for calculation" class="field" name="how_sum-arg1">
+            <input type="text" placeholder="Pass the comma separated sequence of numbers" class="field" name="how_sum-arg2">
+        </div>
+    </div>
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="BestSum">Find best target sum way</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the target sum number for calculation" class="field" name="best_sum-arg1">
+            <input type="text" placeholder="Pass the comma separated sequence of numbers" class="field" name="best_sum-arg2">
+        </div>
+    </div>
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="CanConstruct">Subset target string constructing</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the target string for construction" class="field" name="can_construct-arg1">
+            <input type="text" placeholder="Pass the comma separated sequence of chars" class="field" name="can_construct-arg2">
+        </div>
+    </div>
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="CountConstruct">Find target construction ways</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the target string for construction" class="field" name="count_construct-arg1">
+            <input type="text" placeholder="Pass the comma separated sequence of chars" class="field" name="count_construct-arg2">
+        </div>
+    </div>
+    <div class="block">
+        <input type="radio" name="Algo" class="radio">
+        <label for="AllConstruct">Possible target construction combinations</label>
+        <div class="content">
+            <input type="text" placeholder="Pass the target string for construction" class="field" name="all_construct-arg1">
+            <input type="text" placeholder="Pass the comma separated sequence of chars" class="field" name="all_construct-arg2">
+        </div>
+    </div>
+    <input type="submit" value="SEND ME">
+</form>
+<script>
+    const blocks = document.querySelectorAll('.radio');
+    blocks.forEach(function(el){
+    el.onclick = (e)=>{
+        let target = e.target.closest('.block');
+        target.querySelector('.content').style.height = '100%';
+        target.querySelector('.content').style.display = 'block';
+        blocks.forEach(function(elem){
+            if(elem.parentNode!==target){
+                parentBlock = elem.closest('.block');
+                parentBlock.querySelector('.content').style.height = '0';
+                parentBlock.querySelector('.content').style.display = 'none';
+            }
+        })
+    }
+})
+</script>
+    <h3>{{ greeting }}</h3>
+    <h3>Approach:</h3>
+        <h4>{{ approach }}</h4>
+    <h3>Result:</h3>
+        <h4>{{ result }}</h4>
+    <h3>Execution time:</h3>
+        <h4>{{ execution_time }}</h4>
+</body>
+</html>
